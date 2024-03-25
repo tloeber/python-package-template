@@ -1,0 +1,44 @@
+[tool.poetry]
+name = "my-project"  # Should match repo name. Convention is to use hyphens instead of underscores.
+version = "0.0.1"
+description = ""
+authors = ["team name <team@email.com>"]
+license = ""
+packages = [{ include = "my_project", from = "src" }]  # Update `include` after renaming the package folder
+
+[[tool.poetry.source]]
+name = "PyPI"
+priority = "primary"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+
+[tool.poetry.dependencies]
+python = "3.11"  # If this is a library, specify version *range* instead
+# Python packages will be added here if running poetry install <package>
+pydantic = "^2.4.2"
+pydantic-settings = "^2.0.3"
+s3path = "^0.5.2"
+
+# Add *local* packages here, if any:
+# my-local-package = { path = "..", develop = true }  # `develop` makes install *editable*
+
+[tool.poetry.group.dev.dependencies]
+# testing and validation
+mypy = "^1.4.0"
+pylint = "^2.17.4"
+black = "^23.3.0"
+pytest = "^7.3.2"
+behave = "^1.2.6"
+matplotlib = "^3.7.1"
+# notebook support
+ipykernel = "*"
+nb-mypy = "^1.0.5"
+ipytest = "^0.14.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 100
